@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>kyutech-map</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+  <h1>Kyutech-Map</h1>
+  <form id="uploadForm" action='{{ url_for("predict") }}' method="POST" enctype="multipart/form-data">
+    近くの建物の写真をアップロードしてください。<br>
+    <div>
+    <table><tr>
+    <th><input type="file" name="file"></th>
+    <th><button type="submit">アップロード</button></th>
+    </tr></table>
+    </div>
+  </form>
+</body>
+</html>
