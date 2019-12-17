@@ -7,6 +7,14 @@ import base64
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join("file://", os.getcwd(), 'uploads')
 
+def pla_num(number):
+    if number == 0:
+        return '銅像'
+    elif number == 33:
+        return '図書館'
+    elif number == 55:
+        return '食堂'
+
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'POST':
@@ -24,7 +32,9 @@ def predict():
     qr_b64str = base64.b64encode(buf.getvalue()).decode("utf-8")
     qr_b64data = "data:image/png;base64,{}".format(qr_b64str)
 
-    return render_template('predict.html', img=qr_b64data)
+    number = 55
+
+    return render_template('predict.html', img=qr_b64data, number=number, place=pla_num(number))
 
 
 if __name__ == "__main__":
