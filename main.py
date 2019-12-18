@@ -1,9 +1,14 @@
 from flask import Flask, redirect, request, render_template, url_for, flash, session
+from keras.backend import tensorflow_backend as backend
 from PIL import Image
 from werkzeug import secure_filename
 import os, io
 import base64
-
+from tensorflow.keras.models import model_from_json
+import glob
+from PIL import Image
+import numpy as np
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join("file://", os.getcwd(), 'uploads')
@@ -35,13 +40,34 @@ def predict():
                 flash('ファイルがないお')
                 return redirect(url_for('index'))
             else:
+                backend.clear_session() # 2回以上連続してpredictするために必要な処理
+                # モデルの読み込み
+                model = model_from_json(open('and.json', 'r').read())
+                
+                # 重みの読み込み
+                model.load_weights('and_weight.hdf5')
+                
+
+                image_size = 60
+                
+                image = Image.open(img)
+                image = image.convert("RGB")
+                image = image.resize((image_size, image_size))
+                data = np.asarray(image)
+                X = np.array(data)
+                X = X.astype('float32')
+                X = X / 255.0
+                
+                prd = model.predict(X).argmax(axis=1)
+                ans = [33, 55, 0]
+                
                 image = Image.open(img)
                 buf = io.BytesIO()
                 image.save(buf, 'png')
                 qr_b64str = base64.b64encode(buf.getvalue()).decode("utf-8")
                 qr_b64data = "data:image/png;base64,{}".format(qr_b64str)
 
-                number = 55
+                number = ans[pred]
 
                 return render_template('predict.html', img=qr_b64data, number=number, place=pla_num(number))
 
