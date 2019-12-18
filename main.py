@@ -57,17 +57,19 @@ def predict():
                 X = np.array(data)
                 X = X.astype('float32')
                 X = X / 255.0
+                X = X[None, ...]
                 
                 prd = model.predict(X).argmax(axis=1)
+                print(type(prd))
                 ans = [33, 55, 0]
-                
+                number = ans[int(prd)]
                 image = Image.open(img)
                 buf = io.BytesIO()
                 image.save(buf, 'png')
                 qr_b64str = base64.b64encode(buf.getvalue()).decode("utf-8")
                 qr_b64data = "data:image/png;base64,{}".format(qr_b64str)
 
-                number = ans[pred]
+
 
                 return render_template('predict.html', img=qr_b64data, number=number, place=pla_num(number))
 
