@@ -7,8 +7,12 @@
 
 </head>
 <body>
+<div class='bo_cl'>
+  {% for message in get_flashed_messages() %}
+  <div class='flash'>{{ message }}</div>
+  {% endfor %}
   <h1>Kyutech-Map</h1>
-  <form id="uploadForm" action='{{ url_for("predict") }}' method="POST" enctype="multipart/form-data">
+  <form id="uploadForm" action='/predict' method="POST" enctype="multipart/form-data">
     近くの建物の写真をアップロードしてください。<br>
     <div>
     <table><tr>
@@ -26,5 +30,6 @@
   <img src="/static/images/exam_2.png" class="example"><br>
   3.完了です。<br>
   </p>
+</div>
 </body>
 </html>

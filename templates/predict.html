@@ -7,11 +7,13 @@
 
 </head>
 <body>
+<div class='bo_cl'>
   <a class="title" href="{{ url_for('index') }}"><h1>Kyutech-Map</h1></a>
-  <h2>あなたは今{{ place }}({{ number }}番)付近にいます。</h2>
+  <h2>あなたは今<span class='point'>{{ place }}({{ number }}番)</span>付近にいます。</h2>
   <img src="{{img}}" class="example">
   <br><br>
   <img src="/static/images/{{number}}.png">
   <img src="/static/images/detail.jpg">
+</div>
 </body>
 </html>
