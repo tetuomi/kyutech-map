@@ -71,26 +71,18 @@ def predict():
                 X = X / 255.0
                 X = X[None, ...]
                 
-                # ぜひともexpected_valueに期待値が0.5未満で0が入るような関数かなんか作って欲しいです。とりあえず今は強制で1入れておきます
-                expected_value = 1
-
-                if expected_value == 0:
-                    flash('判別不可！もう一回！')
-                else:
-                    prd = model.predict(X).argmax(axis=1)
-                    print(type(prd))
-                    ans = [33, 55, 0]
-                    number = ans[int(prd)]
-
-                    image = Image.open(img)
-                    buf = io.BytesIO()
-                    image.save(buf, 'png')
-                    qr_b64str = base64.b64encode(buf.getvalue()).decode("utf-8")
-                    qr_b64data = "data:image/png;base64,{}".format(qr_b64str)
+                prd = model.predict(X).argmax(axis=1)
+                ans = [33, 55, 0]
+                number = ans[int(prd)]
+                Image.open(img)
+                buf = io.BytesIO()
+                image.save(buf, 'png')
+                qr_b64str = base64.b64encode(buf.getvalue()).decode("utf-8")
+                qr_b64data = "data:image/png;base64,{}".format(qr_b64str)
 
 
 
-                    return render_template('predict.html', img=qr_b64data, number=number, place=pla_num(number))
+                return render_template('predict.html', img=qr_b64data, number=number, place=pla_num(number))
 
     else:
         return redirect(url_for('index'))
