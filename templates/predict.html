@@ -8,12 +8,14 @@
 </head>
 <body>
 <div class="bobgc">
+<div class="bo_ma">
   <a class="title" href="{{ url_for('index') }}"><h1>Kyutech-Map</h1></a>
   <h2>あなたは今<span class='point'>{{ place }}</span>付近にいます。</h2>
   <img src="{{img}}" class="example">
   <br><br>
-  <img src="/static/images/{{number}}.png">
-  <img src="/static/images/detail.jpg">
+  <img class="map" src="/static/images/{{number}}.png">
+  <img class="map" src="/static/images/detail.jpg">
+</div>
 </div>
 </body>
 </html>
