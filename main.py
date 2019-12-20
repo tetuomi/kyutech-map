@@ -23,11 +23,11 @@ def pla_num(number):
     elif number == 15:
         return '総合研究1号棟'
     elif number == 26:
-        return '未来型インタラクティブ教育棟'
+        return 'インタラクティブ教育棟'
     elif number == 33:
         return '図書館'
     elif number == 52:
-        return '鳳龍会館'
+        return 'LL'
     elif number == 55:
         return '食堂'
     elif number == 62:
