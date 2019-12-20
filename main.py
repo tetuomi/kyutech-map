@@ -81,7 +81,7 @@ def predict():
                     X = X[None, ...]
                 
                     prd = model.predict(X).argmax(axis=1)
-                    ans = [33, 55, 0]
+                    ans = [3, 62, 26, 52, 55, 33, 15, 64, 0]
                     number = ans[int(prd)]
                     #fileimg.open(img)
                     buf = io.BytesIO()
