@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>kyutech-map</title>
+  <link rel=stylesheet type=text/css href="static/css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="bobgc">
+<div class="bo_ma">
+  {% for message in get_flashed_messages() %}
+  <div class='flash'>{{ message }}</div>
+  {% endfor %}
+  <h1>Kyutech-Map</h1>
+  <form id="uploadForm" action='/predict' method="POST" enctype="multipart/form-data">
+    近くの建物の写真をアップロードしてください。<br>
+    <div>
+    <table><tr>
+    <th><input type="file" name="file"></th>
+    <th><button type="submit">アップロード</button></th>
+    </tr></table>
+    </div>
+  </form>
+  <br><br>
+  <h3>使用例</h3>
+  <p>
+  1.近くの建物の写真を撮ります。<br>
+  <img src="/static/images/exam1.jpg" class="example"><br>
+  2.アップロードします。<br>
+  <img src="/static/images/exam2.png" class="example"><br>
+  3.完了です。<br>
+  </p>
+</div>
+</div>
+</body>
+</html>

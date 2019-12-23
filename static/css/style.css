@@ -1,0 +1,12 @@
+h1       { color: #5eb954;
+           font-weight: bold; }
+          
+.bobgc   { background-color: #daead0; }
+.bo_ma   { margin: 0 auto; width: 500px; }
+.point   { color: #000033;
+           font-weight: bold; }
+.title   { text-decoration: none; }
+.example { width: 300px; height: auto; }
+.map     { width: 450px; height: auto; }
+.flash   { font-size: 50px;
+           background-color: #ffd700; }
